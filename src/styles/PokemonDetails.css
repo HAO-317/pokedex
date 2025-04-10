@@ -1,0 +1,189 @@
+.details-container {
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 600px;
+}
+h3{
+  text-shadow: 1px 1px 5px black;
+}
+.details-container.light {
+  background: linear-gradient(180deg, #FFD700, #FFA500);
+}
+
+.details-container.dark {
+  background: linear-gradient(180deg, #555, #444);
+}
+
+.pokemon-image {
+  width: 80%;
+  height: 80%;
+  filter: drop-shadow(2px 2px 15px rgba(0, 0, 255, 0.656));
+  transition: 0.3s ease-in-out;
+}
+.pokemon-image:hover {
+  transform: scale(1.1)
+  rotateZ(-5deg);
+
+}
+
+.image-placeholder {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  color: #999;
+  font-size: 1rem;
+}
+
+.play-cry-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 0 10px 0 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.play-cry-button:hover {
+  background-color: #2dd09c;
+  box-shadow: 1px 1px 8px blueviolet;
+
+}
+
+.cry-icon {
+  width: 40px;
+  height: auto;
+  margin-right: 5px;
+}
+
+.pokemon-number {
+  margin: 10px 0;
+  font-size: 2rem;
+  color: #1E90FF;
+  text-shadow: 1px 1px 1px yellow;
+}
+
+.pokemon-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.type-container {
+  margin: 10px 0;
+}
+
+.type-button {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  margin: 5px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.type-button.grass {
+  background-color: #78C850;
+}
+
+.type-button.poison {
+  background-color: #A040A0;
+}
+
+.type-button.water {
+  background-color: #6890F0;
+}
+
+.type-button.fire {
+  background-color: #F08030;
+}
+
+.type-button.default {
+  background-color: #ccc;
+}
+
+.physical-stats,
+.abilities,
+.stats,
+.description,
+.evolution-chain,
+.moves {
+  margin: 20px 0;
+}
+
+.physical-stats p,
+.abilities p,
+.stats p,
+.description p,
+.evolution-chain p,
+.moves p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+.section-title {
+  margin: 20px 0 10px;
+  font-size: 1rem;
+  color: #FFD700;
+  text-transform: uppercase;
+}
+
+.evolution-chain-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.evolution-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.evolution-sprite {
+  width: 60px;
+  height: 60px;
+}
+
+.evolution-id {
+  font-size: 0.8rem;
+  color: #1E90FF;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.499);
+}
+
+.evolution-link {
+  color: #1E90FF;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.evolution-link:hover {
+  color: #ebfff6;
+  background-color: rgba(7, 180, 255, 0.937);
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+
+.evolution-arrow {
+  margin: 0 5px;
+  color: #FFD700;
+  text-shadow: 1px 1px 2px black;
+}

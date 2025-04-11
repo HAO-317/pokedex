@@ -7,6 +7,7 @@ import '../styles/PokemonDetails.css';
 
 interface Sprites {
   front_default: string;
+  back_default: string; 
   other?: {
     'official-artwork'?: {
       front_default?: string;
@@ -100,6 +101,7 @@ const PokemonDetails = ({
   const [isLoading, setIsLoading] = useState(true);
   const [evolutionChain, setEvolutionChain] = useState<EvolutionPokemon[]>([]);
   const [description, setDescription] = useState<string>('');
+  const [showFront, setShowFront] = useState(true); 
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
@@ -162,6 +164,13 @@ const PokemonDetails = ({
     };
     loadDetails();
   }, [name]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowFront((prev) => !prev);
+    }, 2000); 
+    return () => clearInterval(interval); 
+  }, []);
 
   const playCry = () => {
     if (pokemon?.cries?.latest) {
@@ -229,13 +238,33 @@ const PokemonDetails = ({
               <div className="image-placeholder">No Image</div>
             )}
 
-            <button className="play-cry-button" onClick={playCry}>
-              <img src={criesIcon} alt="Play Cry" className="cry-icon" />
-              Play Cry
-            </button>
+            <div className='container-nameId-display'>
+              <div className='box-nameId'>
+                <div>
+                  <h2 className="pokemon-number">#{pokemon?.id.toString().padStart(3, '0')}</h2>
+                  <h2 className="pokemon-name">{pokemon?.name ? capitalize(pokemon.name) : ''}</h2>
+                </div>
 
-            <h2 className="pokemon-number">#{pokemon?.id.toString().padStart(3, '0')}</h2>
-            <h2 className="pokemon-name">{pokemon?.name ? capitalize(pokemon.name) : ''}</h2>
+                <button className="play-cry-button" onClick={playCry}>
+                  <img src={criesIcon} alt="Play Cry" className="cry-icon" />
+                  Play Cry
+                </button>
+              </div>
+
+              <div className='display'>
+                {pokemon?.sprites.front_default && pokemon?.sprites.back_default ? (
+                  <div className="pixel-sprite-container">
+                    <img
+                      src={showFront ? pokemon.sprites.front_default : pokemon.sprites.back_default}
+                      alt={`${pokemon.name} ${showFront ? 'front' : 'back'}`}
+                      className="pixel-sprite"
+                    />
+                  </div>
+                ) : (
+                  <div className="pixel-sprite-placeholder">No Pixel Sprite</div>
+                )}
+              </div>
+            </div>
 
             <div className="type-container">
               {pokemon?.types.map((typeInfo) => (

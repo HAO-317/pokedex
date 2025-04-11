@@ -7,7 +7,9 @@ import '../styles/PokemonDetails.css';
 
 interface Sprites {
   front_default: string;
-  back_default: string; 
+  back_default: string;
+  front_shiny: string; 
+  back_shiny: string; 
   other?: {
     'official-artwork'?: {
       front_default?: string;
@@ -101,7 +103,8 @@ const PokemonDetails = ({
   const [isLoading, setIsLoading] = useState(true);
   const [evolutionChain, setEvolutionChain] = useState<EvolutionPokemon[]>([]);
   const [description, setDescription] = useState<string>('');
-  const [showFront, setShowFront] = useState(true); 
+  const [showFront, setShowFront] = useState(true);
+  const [isShiny, setIsShiny] = useState(false); 
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
@@ -168,8 +171,8 @@ const PokemonDetails = ({
   useEffect(() => {
     const interval = setInterval(() => {
       setShowFront((prev) => !prev);
-    }, 2000); 
-    return () => clearInterval(interval); 
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   const playCry = () => {
@@ -251,18 +254,38 @@ const PokemonDetails = ({
                 </button>
               </div>
 
-              <div className='display'>
-                {pokemon?.sprites.front_default && pokemon?.sprites.back_default ? (
-                  <div className="pixel-sprite-container">
-                    <img
-                      src={showFront ? pokemon.sprites.front_default : pokemon.sprites.back_default}
-                      alt={`${pokemon.name} ${showFront ? 'front' : 'back'}`}
-                      className="pixel-sprite"
-                    />
-                  </div>
-                ) : (
-                  <div className="pixel-sprite-placeholder">No Pixel Sprite</div>
-                )}
+              <div className='display-container'>
+                <div className='display'>
+                  {pokemon?.sprites.front_default && pokemon?.sprites.back_default ? (
+                    <div className="pixel-sprite-container">
+                      <img
+                        src={
+                          showFront
+                            ? (isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default)
+                            : (isShiny ? pokemon.sprites.back_shiny : pokemon.sprites.back_default)
+                        }
+                        alt={`${pokemon.name} ${isShiny ? 'shiny' : 'normal'} ${showFront ? 'front' : 'back'}`}
+                        className="pixel-sprite"
+                      />
+                    </div>
+                  ) : (
+                    <div className="pixel-sprite-placeholder">No Pixel Sprite</div>
+                  )}
+                </div>
+                <div className="display-buttons">
+                  <button
+                    className={`toggle-button ${!isShiny ? 'active' : ''}`}
+                    onClick={() => setIsShiny(false)}
+                  >
+                    NORMAL
+                  </button>
+                  <button
+                    className={`toggle-button ${isShiny ? 'active' : ''}`}
+                    onClick={() => setIsShiny(true)}
+                  >
+                    SHINY
+                  </button>
+                </div>
               </div>
             </div>
 
